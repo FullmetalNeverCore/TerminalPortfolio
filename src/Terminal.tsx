@@ -142,7 +142,7 @@ const Terminal: React.FC = () => {
                     link={entry.islink}
                     />
             </div>   
-            
+            <div className="typewriterPreformatted">
                 <Typewriter
                         segments={[
                             { text: entry.response, color: entry.color },
@@ -151,6 +151,7 @@ const Terminal: React.FC = () => {
                         speed={0}
                         link={entry.islink}
                         />
+            </div>
             </div>
       ))}
         <form onSubmit={handleSubmit} className="terminal-form">
