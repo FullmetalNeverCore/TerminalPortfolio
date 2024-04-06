@@ -50,10 +50,12 @@ const Terminal: React.FC = () => {
 
   
   useEffect(() => {
+    const zerooneEntry = { prefix : "",command: input, response: "Michaelsoft Binbows [Version 66.0.19045.6646]",color: "white", speed: 0.1,islink: entry.islink};
+    const zeroEntry = { prefix : "",command: input, response: "(c) Michaelsoft Corporation. All rights reserved.",color: "white", speed: 0.1,islink: entry.islink};
     const newEntry = { prefix : "",command: input, response: coms('banner'),color: "red", speed: 0.1,islink: entry.islink};
     const secEntry = { prefix: "", command: input, response: "Welcome to my interactive web portfolio", color: "red", speed: 5,islink: entry.islink};
     const thrEntry = { prefix : "",command: input, response: "For list of available commands type 'help'",color: "red", speed: 5,islink: entry.islink}; 
-    setHistory([...history, newEntry,secEntry,thrEntry]);
+    setHistory([...history,zerooneEntry,zeroEntry,newEntry,secEntry,thrEntry]);
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -68,24 +70,25 @@ const Terminal: React.FC = () => {
 
     let spd:number = 10
     var keys = Object.keys(accl);
-
-
-    if (keys.includes(input)){
-        spd = accl[input];
+    let inp = input.split(" ");
+    if (keys.includes(inp[0])){
+        spd = accl[inp[0]];
         console.log(spd);
     }
+
+
     let possible_comms: Array<string> = ['clear'];
     let possible_link_comms: Array<string> = ['link','projects'];
 
     e.preventDefault();
     let answ: string = ''; 
-    if(possible_comms.includes(input)){
+    if(possible_comms.includes(inp[0])){
         switch(input){
             case 'clear':
                 setHistory([]);
         }
     }
-    else if (possible_link_comms.includes(input)){
+    else if (possible_link_comms.includes(inp[0])){
         let arr: Interfcs.HashMap = projects;
         let newEntries = [{
             prefix : "0xncore@port:~ $ ",
@@ -113,7 +116,7 @@ const Terminal: React.FC = () => {
 
 
 
-    if(input != 'clear' && !possible_link_comms.includes(input)){
+    if(input != 'clear' && !possible_link_comms.includes(inp[0])){
         const newEntry = { prefix : "0xncore@port:~ $ ",command: input, response: answ, color: entry.color,speed: spd,islink: entry.islink}; 
         setHistory([...history, newEntry]); // Добавляем команду и ответ в историю
     }
