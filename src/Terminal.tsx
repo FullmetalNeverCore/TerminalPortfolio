@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Typewriter from './TypeWriter';
 import './styles/styles.css'
 import {coms,projects} from './Commands';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Interfcs from "./interfcs";
 
 

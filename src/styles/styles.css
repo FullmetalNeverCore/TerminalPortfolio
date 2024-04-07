@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 .terminal {
   background-color: #282c34;
@@ -10,16 +14,9 @@
   color: white;
 }
 
-.terminal {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 50px;
-  color: white;
-  padding: 20px; 
-}
+
+
+
 
 .input-prefix {
   display: flex;
@@ -54,7 +51,8 @@
 
 .input-field {
   background-color: transparent; 
-  border: none; 
+  width: 100%;
+  border: white; 
   color: inherit;
   font-size: medium; 
   outline: none; 
@@ -62,11 +60,20 @@
 
 .typewriterText {
   font-family: 'monospace';
-  font-size: medium;
   color: rgb(255, 255, 255);
   white-space: pre;
   cursor: blink;
   animation: blinkCursor 0.75s steps(1) infinite;
+}
+
+
+@media (max-width: 900px) {
+  .typewriterText {
+    font-size: 7px; 
+  }
+  .input-field {
+    font-size: 7px;
+  }
 }
 
 

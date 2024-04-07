@@ -13,7 +13,7 @@ interface TypewriterProps {
 
 
 
-  const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""}) => {
+const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""}) => {
     const [displayIndex, setDisplayIndex] = useState(0);
     
     const totalChars = useMemo(() => segments.reduce((acc, segment) => acc + segment.text.length, 0), [segments]);
@@ -59,7 +59,7 @@ interface TypewriterProps {
     }
     else{
       textnolink = (
-        <div className="typewriterText" style={{ fontFamily: 'monospace', color: 'limegreen' }}> 
+        <div className="typewriterText text-sm" style={{ fontFamily: 'monospace', color: 'limegreen'}}> 
           {displayedText}
         </div>
       );
