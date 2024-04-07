@@ -29,6 +29,7 @@ export var projects: Interfcs.HashMap = {
     "NetworkScanner - iOS app created to scan local network and obtain device's local IPaddr and Name.": "https://github.com/FullmetalNeverCore/NetworkScanner",
     "NeofetchAtHome - a little python script that returns a neofetch-like output, but written by me in python for some of my internal needs": "https://github.com/FullmetalNeverCore/NeofetchAtHome",
     'CovStat - react webapp that displays covid-19 statistics for the world and the country of your choice': 'https://github.com/FullmetalNeverCore/covstat',
+    'TerminalPortfolio - the source code of this very website!' : 'https://github.com/FullmetalNeverCore/TerminalPortfolio'
 }
 export function coms(args:string){    
     //All commands handled by switch
