@@ -53,7 +53,7 @@ const Terminal: React.FC = () => {
   useEffect(() => {
     const zerooneEntry = { prefix : "",command: input, response: "Michaelsoft Binbows [Version 66.0.19045.6646]",color: "white", speed: 0.1,islink: entry.islink};
     const zeroEntry = { prefix : "",command: input, response: "(c) Michaelsoft Corporation. All rights reserved.",color: "white", speed: 0.1,islink: entry.islink};
-    const newEntry = { prefix : "",command: input, response: coms('banner'),color: "red", speed: 50,islink: entry.islink};
+    const newEntry = { prefix : "",command: input, response: coms('banner'),color: "red", speed: 500,islink: entry.islink};
     const secEntry = { prefix: "", command: input, response: "Welcome to my interactive web portfolio", color: "red", speed: 5,islink: entry.islink};
     const thrEntry = { prefix : "",command: input, response: "For list of available commands type 'help'",color: "red", speed: 5,islink: entry.islink}; 
     setHistory([...history,zerooneEntry,zeroEntry,newEntry,secEntry,thrEntry]);
