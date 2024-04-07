@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Type } from 'typescript';
 
 interface TextSegment {
     text: string;
@@ -54,7 +53,7 @@ interface TypewriterProps {
     if(link !== ""){
       textnolink = (
         <div className="typewriterText" style={{ fontFamily: 'monospace', color: 'limegreen' }}> 
-          <a href={link} target="_blank">{displayedText}</a>
+          <a href={link} target="_blank" rel="noreferrer noopener">{displayedText}</a>
         </div>
       );
     }
