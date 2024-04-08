@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 interface TextSegment {
     text: string;
     color?: string; 
-  }
+}
 
 interface TypewriterProps {
     segments: TextSegment[];
@@ -11,13 +11,39 @@ interface TypewriterProps {
     link?: string;
 }
 
+interface DGT {
+  charsToShow: number;
+  segment: TextSegment;
+}
+
+const DynamicGradientText: React.FC<DGT> = ({ charsToShow, segment }) => {
+  let grads = ['blue','red']
+  let xcolor = segment.color;
+  let ycolor = grads.includes(`${segment.color}`) ? `dark${segment.color}` : `${segment.color}`;
+  const style = {
+    backgroundImage: `linear-gradient(to bottom, ${xcolor}, ${ycolor})`,
+    fontFamily: 'monospace',
+    color: 'transparent',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+  };
+
+  return (
+    <span style={style}>
+      {segment.text.substring(0, Math.min(charsToShow, segment.text.length))}
+    </span>
+  );
+};
 
 
 const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""}) => {
     const [displayIndex, setDisplayIndex] = useState(0);
     
     const totalChars = useMemo(() => segments.reduce((acc, segment) => acc + segment.text.length, 0), [segments]);
-  
+
+    let textnolink;
+
+
     useEffect(() => {
       if (displayIndex >= totalChars) return;
   
@@ -31,13 +57,13 @@ const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""})
     const displayedText = useMemo(() => {
       let currentLength = 0;
       let textSegments: JSX.Element[] = [];
+
       for (let segment of segments) {
         const charsToShow = displayIndex - currentLength;
+      
         if (charsToShow > 0) {
           textSegments.push(
-            <span key={segment.text} style={{ color: segment.color }}>
-              {segment.text.substring(0, Math.min(charsToShow, segment.text.length))}
-            </span>
+            <DynamicGradientText charsToShow={charsToShow} segment={segment}></DynamicGradientText>
           );
         }
         currentLength += segment.text.length;
@@ -47,8 +73,8 @@ const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""})
     }, [displayIndex, segments]);
     
 
-    let textnolink;
 
+    
 
     if(link !== ""){
       textnolink = (

@@ -4,31 +4,13 @@ import './styles/styles.css'
 import {coms,projects} from './Commands';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Interfcs from "./interfcs";
+import * as misc from './misc';
 
-
-
-
-interface CommandHistoryEntry {
-    prefix : string;
-    command: string;
-    response: string;
-    color: string;
-    speed: number;
-    islink?: string;
-}
-
-interface Acceleration{
-    [key: string]: number; 
-}
-
-
-var accl:Acceleration = {
+var accl:Interfcs.Acceleration = {
     'banner': 0.1,
 }
 
-
-
-const entry: CommandHistoryEntry = {
+const entry: Interfcs.CommandHistoryEntry = {
     prefix: "!",
     command: "test",
     response: "This is a test command",
@@ -44,19 +26,14 @@ const Terminal: React.FC = () => {
   const [output, setOutput] = useState('');
   const [displayText, setDisplayText] = useState('');
   
-  const [history, setHistory] = useState<CommandHistoryEntry[]>([]); 
+  const [history, setHistory] = useState<Interfcs.CommandHistoryEntry[]>([]); 
   const inputRef = useRef<HTMLInputElement>(null); 
 
 
 
   
   useEffect(() => {
-    const zerooneEntry = { prefix : "",command: input, response: "Michaelsoft Binbows [Version 66.0.19045.6646]",color: "white", speed: 0.1,islink: entry.islink};
-    const zeroEntry = { prefix : "",command: input, response: "(c) Michaelsoft Corporation. All rights reserved.",color: "white", speed: 0.1,islink: entry.islink};
-    const newEntry = { prefix : "",command: input, response: coms('banner'),color: "red", speed: 5,islink: entry.islink};
-    const secEntry = { prefix: "", command: input, response: "Welcome to my interactive web portfolio", color: "red", speed: 5,islink: entry.islink};
-    const thrEntry = { prefix : "",command: input, response: "For list of available commands type 'help'",color: "red", speed: 5,islink: entry.islink}; 
-    setHistory([...history,zerooneEntry,zeroEntry,newEntry,secEntry,thrEntry]);
+    setHistory(misc.starterHistory);
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -68,21 +45,15 @@ const Terminal: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)  => {
-
-    let spd:number = 10
-    var keys = Object.keys(accl);
-    let inp = input.split(" ");
-    if (keys.includes(inp[0])){
-        spd = accl[inp[0]];
-        console.log(spd);
-    }
-
-
     let possible_comms: Array<string> = ['clear'];
     let possible_link_comms: Array<string> = ['link','projects'];
 
-    e.preventDefault();
+    let inp = input.split(" ");
+    let spd:number = misc.determineSpeed(inp);
+    var keys = Object.keys(accl);
+
     let answ: string = ''; 
+
     if(possible_comms.includes(inp[0])){
         switch(input){
             case 'clear':
@@ -119,11 +90,11 @@ const Terminal: React.FC = () => {
 
     if(input != 'clear' && !possible_link_comms.includes(inp[0])){
         const newEntry = { prefix : "0xncore@port:~ $ ",command: input, response: answ, color: entry.color,speed: spd,islink: entry.islink}; 
-        setHistory([...history, newEntry]); // Добавляем команду и ответ в историю
+        setHistory([...history, newEntry]); 
     }
 
     console.log(history);
-    setInput(''); // Очищаем поле ввода
+    setInput('');
   };
 
 
