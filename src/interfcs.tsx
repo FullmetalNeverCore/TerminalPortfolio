@@ -17,3 +17,20 @@ export interface CommandHistoryEntry {
 export interface Acceleration{
     [key: string]: number; 
 }
+
+
+export interface TextSegment {
+    text: string;
+    color?: string; 
+}
+
+export interface TypewriterProps {
+    segments: TextSegment[];
+    speed?: number; 
+    link?: string;
+}
+
+export interface DGT {
+  charsToShow: number;
+  segment: TextSegment;
+}

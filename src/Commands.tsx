@@ -1,10 +1,6 @@
 import {logo} from "./Logo";
 import * as Interfcs from "./interfcs";
 
-interface HashMap {
-    [key: string]: string; 
-}
-
 var hashMap: Interfcs.HashMap = {
     'help': `
     clear   Clear terminal

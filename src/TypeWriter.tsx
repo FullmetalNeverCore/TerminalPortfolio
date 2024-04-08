@@ -1,22 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import * as Interfcs from "./interfcs";
 
-interface TextSegment {
-    text: string;
-    color?: string; 
-}
 
-interface TypewriterProps {
-    segments: TextSegment[];
-    speed?: number; 
-    link?: string;
-}
 
-interface DGT {
-  charsToShow: number;
-  segment: TextSegment;
-}
-
-const DynamicGradientText: React.FC<DGT> = ({ charsToShow, segment }) => {
+const DynamicGradientText: React.FC<Interfcs.DGT> = ({ charsToShow, segment }) => {
   let grads = ['blue','red']
   let xcolor = segment.color;
   let ycolor = grads.includes(`${segment.color}`) ? `dark${segment.color}` : `${segment.color}`;
@@ -36,7 +23,7 @@ const DynamicGradientText: React.FC<DGT> = ({ charsToShow, segment }) => {
 };
 
 
-const Typewriter: React.FC<TypewriterProps> = ({ segments, speed = 5,link = ""}) => {
+const Typewriter: React.FC<Interfcs.TypewriterProps> = ({ segments, speed = 5,link = ""}) => {
     const [displayIndex, setDisplayIndex] = useState(0);
     
     const totalChars = useMemo(() => segments.reduce((acc, segment) => acc + segment.text.length, 0), [segments]);

@@ -52,6 +52,7 @@ const Terminal: React.FC = () => {
     let spd:number = misc.determineSpeed(inp);
     var keys = Object.keys(accl);
 
+    e.preventDefault()
     let answ: string = ''; 
 
     if(possible_comms.includes(inp[0])){
@@ -88,7 +89,7 @@ const Terminal: React.FC = () => {
 
 
 
-    if(input != 'clear' && !possible_link_comms.includes(inp[0])){
+    if(inp[0] != 'clear' && !possible_link_comms.includes(inp[0])){
         const newEntry = { prefix : "0xncore@port:~ $ ",command: input, response: answ, color: entry.color,speed: spd,islink: entry.islink}; 
         setHistory([...history, newEntry]); 
     }
