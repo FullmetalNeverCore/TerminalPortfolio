@@ -3,34 +3,41 @@
 @tailwind utilities;
 
 
+
+
 .terminal {
   background-color: #282c34;
   min-height: 100vh;
+  position: relative;
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .input-prefix {
   display: flex;
+  background-color: #282c34;
   align-items: center; 
 }
 
 .typewriterPreformatted {
+  background-color: #282c34;
   font-family: monospace;
   white-space: pre-wrap; 
 }
 
 .command, .response {
+  background-color: #282c34;
   margin-bottom: 5px;
 }
 
 .terminal-text {
   font-family: 'monospace';
   font-size: medium;
+  background-color: #282c34;
   color: rgb(255, 255, 255);
   position: absolute; 
   top: 0;
@@ -40,6 +47,7 @@
 
 .terminal-form {
   width: 100%; 
+  background-color: #282c34;
   flex-direction: column;
   display: flex; 
 }
@@ -48,7 +56,7 @@
 .input-field {
   background-color: transparent; 
   width: 100%;
-  border: white; 
+  background-color: #282c34;
   color: inherit;
   font-size: medium; 
   outline: none; 
@@ -57,11 +65,13 @@
 .typewriterText {
 
   font-family: 'monospace';
+  background-color: #282c34;
   color: white;
   white-space: pre;
   cursor: blink;
   animation: blinkCursor 0.75s steps(1) infinite;
 }
+
 
 
 @media (max-width: 900px) {
